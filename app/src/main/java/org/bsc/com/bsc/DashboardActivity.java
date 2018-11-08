@@ -53,8 +53,8 @@ public class DashboardActivity extends Activity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-//                model.getCategories().get(groupPosition).getSubcategories().get(childPosition).getUrl();
-                     String fileName = contentData.get(listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition));
+
+                     String fileName = model.getCategories().get(groupPosition).getSubcategories().get(childPosition).getUrl();
                 if(fileName.contains(".pdf")){
                     Intent intent = new Intent(DashboardActivity.this, SampleActivity.class);
                     intent.putExtra("fileName",fileName);
