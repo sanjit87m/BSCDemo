@@ -2,6 +2,7 @@ package org.bsc.com.bsc;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -55,7 +56,11 @@ public class DashboardActivity extends Activity {
                                         int groupPosition, int childPosition, long id) {
 
                      String fileName = model.getCategories().get(groupPosition).getSubcategories().get(childPosition).getUrl();
-                if(fileName.contains(".pdf")){
+
+                if(fileName.startsWith("http")) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(fileName));
+                    startActivity(browserIntent);
+                } else if(fileName.contains(".pdf")){
                     Intent intent = new Intent(DashboardActivity.this, SampleActivity.class);
                     intent.putExtra("fileName",fileName);
                     startActivity(intent);
